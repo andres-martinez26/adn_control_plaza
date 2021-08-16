@@ -77,7 +77,8 @@ pipeline {
     success {
       echo 'This will run only if successful'
 	  //si la ruta existe se ejecuta correctamente
-	  junit 'microservicio/report.xml'
+	  junit 'microservicio/dominio/build/test-results/test/*.xml'
+	  junit 'microservicio/infraestructura/build/test-results/test/*.xml'
     }
     failure {
       echo 'This will run only if failed'
