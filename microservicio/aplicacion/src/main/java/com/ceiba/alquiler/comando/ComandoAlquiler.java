@@ -1,13 +1,17 @@
-package com.ceiba.alquiler.modelo.dto;
+package com.ceiba.alquiler.comando;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.time.LocalDateTime;
 
 @Getter
+@Setter
 @AllArgsConstructor
-public class DtoAlquiler {
+@NoArgsConstructor
+public class ComandoAlquiler {
 
     private Long id;
     private String nombre;

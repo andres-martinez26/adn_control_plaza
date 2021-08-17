@@ -17,9 +17,9 @@ public class MapeoAlquiler implements RowMapper<DtoAlquiler>, MapperResult {
         String nombre = rs.getString("nombre");
         String numero = rs.getString("numero");
         LocalDateTime fechaPago = extraerLocalDateTime(rs, "fecha_pago");
-        Boolean estadoPago = rs.getBoolean("estado_pago");
-        String local = rs.getString("local");
+        String estadoPago = rs.getString("estado_pago");
+        String letraLocal = rs.getString("letra_local");
 
-        return new DtoAlquiler(id,nombre,numero,fechaPago,estadoPago,local);
+        return new DtoAlquiler(id,nombre,numero,fechaPago,estadoPago,letraLocal);
     }
 }

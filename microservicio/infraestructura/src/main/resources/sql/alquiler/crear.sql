@@ -1,0 +1,1 @@
+insert into alquiler (id, nombre, numero, fecha_pago, estado_pago, letra_local) values (:id, :nombre, :numero, :fechaPago, :estadoPago, :letraLocal)
