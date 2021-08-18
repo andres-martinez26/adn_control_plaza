@@ -36,8 +36,8 @@ public class RepositorioAlquilerMysql implements RepositorioAlquiler {
     }
 
     @Override
-    public int crear(Alquiler alquiler) {
-        return this.customNamedParameterJdbcTemplate.crearSinIdIncrementable(alquiler,sqlCrear);
+    public void crear(Alquiler alquiler) {
+        this.customNamedParameterJdbcTemplate.crearSinIdIncrementable(alquiler, sqlCrear);
     }
 
     @Override
@@ -56,8 +56,8 @@ public class RepositorioAlquilerMysql implements RepositorioAlquiler {
     public boolean existe(Long id) {
         MapSqlParameterSource parameterSource = new MapSqlParameterSource();
         parameterSource.addValue("id", id);
-        return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().
-                queryForObject(sqlExiste,parameterSource,Boolean.class);
+        return Boolean.TRUE.equals(this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().
+                queryForObject(sqlExiste, parameterSource, Boolean.class));
     }
 
     @Override
@@ -69,15 +69,15 @@ public class RepositorioAlquilerMysql implements RepositorioAlquiler {
         parameterSource.addValue("fechaPago", alquiler.getFechaPago().toString());
         parameterSource.addValue("estadoPago", alquiler.getEstadoPago());
         parameterSource.addValue("letraLocal", alquiler.getLetraLocal());
-        return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().
-                queryForObject(sqlExisteCompleto,parameterSource,Boolean.class);
+        return Boolean.TRUE.equals(this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().
+                queryForObject(sqlExisteCompleto, parameterSource, Boolean.class));
     }
 
     @Override
     public boolean existeLocal(String letraLocal) {
         MapSqlParameterSource parameterSource = new MapSqlParameterSource();
         parameterSource.addValue("letraLocal", letraLocal);
-        return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().
-                queryForObject(sqlExisteLocal,parameterSource,Boolean.class);
+        return Boolean.TRUE.equals(this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().
+                queryForObject(sqlExisteLocal, parameterSource, Boolean.class));
     }
 }
