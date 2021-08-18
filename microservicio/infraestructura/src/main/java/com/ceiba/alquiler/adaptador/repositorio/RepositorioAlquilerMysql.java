@@ -27,13 +27,17 @@ public class RepositorioAlquilerMysql implements RepositorioAlquiler {
     @SqlStatement(namespace="alquiler", value="existeCompleto")
     private static String sqlExisteCompleto;
 
+    @SqlStatement(namespace="alquiler", value="existeLocal")
+    private static String sqlExisteLocal;
+
+
     public RepositorioAlquilerMysql(CustomNamedParameterJdbcTemplate customNamedParameterJdbcTemplate) {
         this.customNamedParameterJdbcTemplate = customNamedParameterJdbcTemplate;
     }
 
     @Override
-    public Long crear(Alquiler alquiler) {
-        return this.customNamedParameterJdbcTemplate.crear(alquiler,sqlCrear);
+    public int crear(Alquiler alquiler) {
+        return this.customNamedParameterJdbcTemplate.crearSinIdIncrementable(alquiler,sqlCrear);
     }
 
     @Override
@@ -67,5 +71,13 @@ public class RepositorioAlquilerMysql implements RepositorioAlquiler {
         parameterSource.addValue("letraLocal", alquiler.getLetraLocal());
         return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().
                 queryForObject(sqlExisteCompleto,parameterSource,Boolean.class);
+    }
+
+    @Override
+    public boolean existeLocal(String letraLocal) {
+        MapSqlParameterSource parameterSource = new MapSqlParameterSource();
+        parameterSource.addValue("letraLocal", letraLocal);
+        return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().
+                queryForObject(sqlExisteLocal,parameterSource,Boolean.class);
     }
 }

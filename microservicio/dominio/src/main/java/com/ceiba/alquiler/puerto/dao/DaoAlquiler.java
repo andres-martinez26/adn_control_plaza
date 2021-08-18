@@ -11,5 +11,5 @@ public interface DaoAlquiler {
      * Permite listar registros de alquiler
      * @return los registros
      */
-    List<DtoAlquiler> listar();
+    List<DtoAlquiler> listar(boolean pendiente);
 }

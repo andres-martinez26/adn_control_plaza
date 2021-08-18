@@ -9,7 +9,7 @@ public interface RepositorioAlquiler {
      * @param alquiler
      * @return fecha de pago
      */
-    Long crear(Alquiler alquiler);
+    int crear(Alquiler alquiler);
 
     /**
      * Permite actualizar un registro
@@ -29,6 +29,16 @@ public interface RepositorioAlquiler {
      * @return si existe o no un registro
      */
     boolean existe(Long id);
-
+    /**
+     * Permite validar si existe un registro completo
+     * @param alquiler
+     * @return si existe o no un registro
+     */
     boolean existeCompleto(Alquiler alquiler);
+    /**
+     * Permite validar si existe un registro con un local
+     * @param letraLocal
+     * @return si existe o no un registro
+     */
+    boolean existeLocal(String letraLocal);
 }

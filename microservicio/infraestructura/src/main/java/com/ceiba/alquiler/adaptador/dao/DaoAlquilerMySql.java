@@ -16,12 +16,20 @@ public class DaoAlquilerMySql implements DaoAlquiler {
     @SqlStatement(namespace="alquiler", value="listar")
     private static String sqlListar;
 
+    @SqlStatement(namespace="alquiler", value="listarPendiente")
+    private static String sqlListarPendiente;
+
     public DaoAlquilerMySql(CustomNamedParameterJdbcTemplate customNamedParameterJdbcTemplate) {
         this.customNamedParameterJdbcTemplate = customNamedParameterJdbcTemplate;
     }
 
     @Override
-    public List<DtoAlquiler> listar() {
-        return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().query(sqlListar, new MapeoAlquiler());
+    public List<DtoAlquiler> listar(boolean pendiente) {
+        if (pendiente){
+            return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate()
+                    .query(sqlListarPendiente, new MapeoAlquiler());
+        }
+        return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate()
+                .query(sqlListar, new MapeoAlquiler());
     }
 }

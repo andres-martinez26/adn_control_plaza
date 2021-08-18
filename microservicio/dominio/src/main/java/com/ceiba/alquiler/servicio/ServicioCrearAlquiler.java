@@ -9,6 +9,7 @@ import static com.ceiba.dominio.CalculadorFecha.sumarUnMesFechaActual;
 public class ServicioCrearAlquiler {
 
     private static final String EL_USUARIO_YA_TIENE_ALQUILADO_UN_LOCAL = "El usuario ya tiene alquilado un local";
+    private static final String EL_LOCAL_YA_FUE_ALQUILADO = "El local ya fue alquilado";
 
     private final RepositorioAlquiler repositorioAlquiler;
 
@@ -18,9 +19,16 @@ public class ServicioCrearAlquiler {
 
     public String ejecutar(Alquiler alquiler) {
         validarExistenciaPrevia(alquiler);
+        validarExistenciaLocal(alquiler.getLetraLocal());
         this.repositorioAlquiler.crear(alquiler);
-        return String.format("%s fecha de pago: %s", alquiler.getNombre(),
-                sumarUnMesFechaActual(alquiler.getFechaPago(), 1));
+        return sumarUnMesFechaActual(alquiler.getFechaPago(), 1);
+    }
+
+    private void validarExistenciaLocal(String letraLocal) {
+        boolean existe = this.repositorioAlquiler.existeLocal(letraLocal);
+        if(existe) {
+            throw new ExcepcionDuplicidad(EL_LOCAL_YA_FUE_ALQUILADO);
+        }
     }
 
     private void validarExistenciaPrevia(Alquiler alquiler) {

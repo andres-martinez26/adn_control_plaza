@@ -24,6 +24,12 @@ public class ConsultaControladorAlquiler {
     @GetMapping
     @ApiOperation("Listar Registros")
     public List<DtoAlquiler> listar() {
-        return this.manejadorListarAlquiler.ejecutar();
+        return this.manejadorListarAlquiler.ejecutar(false);
+    }
+
+    @GetMapping(value = "/pendiente")
+    @ApiOperation("Lista registros con pago pendiente")
+    public List<DtoAlquiler> listarPendiente() {
+        return this.manejadorListarAlquiler.ejecutar(true);
     }
 }

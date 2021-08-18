@@ -15,5 +15,7 @@ public class ManejadorListarAlquiler {
         this.daoAlquiler = daoAlquiler;
     }
 
-    public List<DtoAlquiler> ejecutar(){ return this.daoAlquiler.listar(); }
+    public List<DtoAlquiler> ejecutar(boolean pendiente){
+        return this.daoAlquiler.listar(pendiente);
+    }
 }

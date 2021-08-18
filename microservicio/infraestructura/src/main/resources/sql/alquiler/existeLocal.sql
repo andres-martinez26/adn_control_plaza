@@ -1,0 +1,1 @@
+select count(1) from alquiler where letra_local = :letraLocal
