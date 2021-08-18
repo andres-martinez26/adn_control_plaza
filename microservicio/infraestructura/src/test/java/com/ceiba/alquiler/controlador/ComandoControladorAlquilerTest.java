@@ -34,7 +34,7 @@ public class ComandoControladorAlquilerTest {
         ComandoAlquiler alquiler = new ComandoAlquilerTestDataBuilder().build();
 
         // act - assert
-        mocMvc.perform(post("/alquier")
+        mocMvc.perform(post("/alquiler")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(alquiler)))
                 .andExpect(status().isOk())
@@ -45,8 +45,9 @@ public class ComandoControladorAlquilerTest {
     @Test
     public void actualizar() throws Exception{
         // arrange
-        Long id = 1099371662L;
+        Long id = 1099371682L;
         ComandoAlquiler alquiler = new ComandoAlquilerTestDataBuilder().build();
+        alquiler.setNombre("Laura");
         alquiler.setEstadoPago("Cancelado");
         // act - assert
         mocMvc.perform(put("/alquiler/{id}",id)
@@ -61,7 +62,7 @@ public class ComandoControladorAlquilerTest {
         Long id = 1099371682L;
 
         // act - assert
-        mocMvc.perform(delete("/alquier/{id}",id)
+        mocMvc.perform(delete("/alquiler/{id}",id)
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());

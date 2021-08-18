@@ -14,9 +14,9 @@ dependencies {
 	testImplementation project.ext.junit5
 	testImplementation project.ext.mockito
 	testImplementation project(':comun:comun-test')
-
+	testImplementation project.ext.springboottest
 	implementation project(':comun:comun-dominio')
-
+	testImplementation project.ext.flywaytest
 	compileOnly project.ext.lombok
 	annotationProcessor project.ext.lombok
 }
@@ -29,6 +29,5 @@ jacocoTestReport {
 }
 
 test {
-	useJUnitPlatform()
 	finalizedBy jacocoTestReport
 }
