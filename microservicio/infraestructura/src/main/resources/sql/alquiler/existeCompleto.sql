@@ -1,0 +1,1 @@
+select count(1) from alquiler where id = :id and nombre = :nombre and numero = :numero and fecha_pago = :fechaPago and estado_pago = :estadoPago and letra_local = :letraLocal

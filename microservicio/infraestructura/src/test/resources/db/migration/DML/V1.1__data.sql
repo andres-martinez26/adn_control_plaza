@@ -1,1 +1,1 @@
-insert into usuario(nombre,clave,fecha_creacion) values('test','1234',now())
+insert into alquiler(id,nombre,numero,fecha_pago,estado_pago,letra_local) values(1099371662,'andrés','3162878196',now(),'pendiente','a');

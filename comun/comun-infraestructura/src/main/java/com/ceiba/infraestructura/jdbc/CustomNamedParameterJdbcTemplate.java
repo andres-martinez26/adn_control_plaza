@@ -27,6 +27,11 @@ public class CustomNamedParameterJdbcTemplate {
 		this.namedParameterJdbcTemplate.update(sql, paramSource,keyHolder,new String[] { "id" });
 		return keyHolder.getKey().longValue();
 	}
+
+	public int crearSinIdIncrementable(Object object,String sql) {
+		MapSqlParameterSource paramSource = crearParametros(object);
+		return this.namedParameterJdbcTemplate.update(sql, paramSource);
+	}
 	
 	public void actualizar(Object object,String sql) {
 		MapSqlParameterSource paramSource = crearParametros(object);
