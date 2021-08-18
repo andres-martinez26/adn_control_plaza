@@ -1,7 +1,6 @@
 package com.ceiba.alquiler.puerto.repositorio;
 
 import com.ceiba.alquiler.modelo.entidad.Alquiler;
-import com.ceiba.usuario.modelo.entidad.Usuario;
 
 public interface RepositorioAlquiler {
     /**
