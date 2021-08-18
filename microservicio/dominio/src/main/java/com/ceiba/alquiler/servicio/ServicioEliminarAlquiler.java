@@ -9,7 +9,5 @@ public class ServicioEliminarAlquiler {
         this.repositorioAlquiler = repositorioAlquiler;
     }
 
-    public void ejecutar(Long id){
-        this.repositorioAlquiler.eliminar(id);
-    }
+    public void ejecutar(Long id){this.repositorioAlquiler.eliminar(id);}
 }
