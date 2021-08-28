@@ -15,23 +15,25 @@ public class ServicioActualizarAlquiler {
         this.repositorioAlquiler = repositorioAlquiler;
     }
 
-    public void  ejecutar(Alquiler alquiler){
-        validarExistenciaPrevia(alquiler);
-        validarExistenciaLocal(alquiler.getLetraLocal());
+    public String ejecutar(Alquiler alquiler){
+        boolean existe = false;
+        existe = validarExistenciaPrevia(alquiler);
+        if(existe) {
+            return new ExcepcionDuplicidad(EL_REGISTRO_YA_EXISTE_EN_EL_SISTEMA).getMessage();
+        }
+        existe = validarExistenciaLocal(alquiler.getLetraLocal());
+        if(existe) {
+            return new ExcepcionDuplicidad(EL_LOCAL_YA_FUE_ALQUILADO).getMessage();
+        }
         this.repositorioAlquiler.actualizar(alquiler);
+        return "Actualizado";
     }
 
-    private void validarExistenciaLocal(String letraLocal) {
-        boolean existe = this.repositorioAlquiler.existeLocal(letraLocal);
-        if(existe) {
-            throw new ExcepcionDuplicidad(EL_LOCAL_YA_FUE_ALQUILADO);
-        }
+    private boolean validarExistenciaLocal(String letraLocal) {
+        return this.repositorioAlquiler.existeLocal(letraLocal);
     }
 
-    private void validarExistenciaPrevia(Alquiler alquiler){
-        boolean existe = this.repositorioAlquiler.existeCompleto(alquiler);
-        if(existe) {
-            throw new ExcepcionDuplicidad(EL_REGISTRO_YA_EXISTE_EN_EL_SISTEMA);
-        }
+    private boolean validarExistenciaPrevia(Alquiler alquiler){
+        return this.repositorioAlquiler.existeCompleto(alquiler);
     }
 }
