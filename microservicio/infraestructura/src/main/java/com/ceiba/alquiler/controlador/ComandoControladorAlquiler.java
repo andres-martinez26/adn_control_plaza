@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@CrossOrigin(origins = "*", methods = {RequestMethod.PUT, RequestMethod.POST, RequestMethod.DELETE})
 @RequestMapping("/alquiler")
 @Api(tags = { "Controlador comando alquiler"})
 public class ComandoControladorAlquiler {
@@ -43,8 +44,8 @@ public class ComandoControladorAlquiler {
 
     @PutMapping(value="/{id}")
     @ApiOperation("Actualizar registro")
-    public void actualizar(@RequestBody ComandoAlquiler comandoAlquiler, @PathVariable Long id){
-        comandoAlquiler.setId(id);
-        manejadorActualizarAlquiler.ejecutar(comandoAlquiler);
+    public ComandoRespuesta<String>  actualizar(@RequestBody ComandoAlquiler comandoAlquiler, @PathVariable Long id){
+        //comandoAlquiler.setId(id);
+        return manejadorActualizarAlquiler.ejecutar(comandoAlquiler);
     }
 }

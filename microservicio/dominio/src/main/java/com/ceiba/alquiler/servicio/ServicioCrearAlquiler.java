@@ -18,23 +18,23 @@ public class ServicioCrearAlquiler {
     }
 
     public String ejecutar(Alquiler alquiler) {
-        validarExistenciaPrevia(alquiler);
-        validarExistenciaLocal(alquiler.getLetraLocal());
+        boolean existe = validarExistenciaPrevia(alquiler);
+        if(existe) {
+            return new ExcepcionDuplicidad(EL_USUARIO_YA_TIENE_ALQUILADO_UN_LOCAL).getMessage();
+        }
+        existe = validarExistenciaLocal(alquiler.getLetraLocal());
+        if(existe) {
+            return new ExcepcionDuplicidad(EL_LOCAL_YA_FUE_ALQUILADO).getMessage();
+        }
         this.repositorioAlquiler.crear(alquiler);
         return sumarUnMesFechaActual(alquiler.getFechaPago(), 1);
     }
 
-    private void validarExistenciaLocal(String letraLocal) {
-        boolean existe = this.repositorioAlquiler.existeLocal(letraLocal);
-        if(existe) {
-            throw new ExcepcionDuplicidad(EL_LOCAL_YA_FUE_ALQUILADO);
-        }
+    private boolean validarExistenciaLocal(String letraLocal) {
+        return this.repositorioAlquiler.existeLocal(letraLocal);
     }
 
-    private void validarExistenciaPrevia(Alquiler alquiler) {
-        boolean existe = this.repositorioAlquiler.existeCompleto(alquiler);
-        if(existe) {
-            throw new ExcepcionDuplicidad(EL_USUARIO_YA_TIENE_ALQUILADO_UN_LOCAL);
-        }
+    private boolean validarExistenciaPrevia(Alquiler alquiler) {
+        return this.repositorioAlquiler.existeCompleto(alquiler);
     }
 }

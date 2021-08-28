@@ -1,14 +1,16 @@
 package com.ceiba.alquiler.comando.manejador;
 
+import com.ceiba.ComandoRespuesta;
 import com.ceiba.alquiler.comando.ComandoAlquiler;
 import com.ceiba.alquiler.comando.fabrica.FabricaAlquiler;
 import com.ceiba.alquiler.modelo.entidad.Alquiler;
 import com.ceiba.alquiler.servicio.ServicioActualizarAlquiler;
 import com.ceiba.manejador.ManejadorComando;
+import com.ceiba.manejador.ManejadorComandoRespuesta;
 import org.springframework.stereotype.Component;
 
 @Component
-public class ManejadorActualizarAlquiler implements ManejadorComando<ComandoAlquiler> {
+public class ManejadorActualizarAlquiler implements ManejadorComandoRespuesta<ComandoAlquiler, ComandoRespuesta<String>> {
 
     private final FabricaAlquiler fabricaAlquiler;
     private final ServicioActualizarAlquiler servicioActualizarAlquiler;
@@ -19,8 +21,8 @@ public class ManejadorActualizarAlquiler implements ManejadorComando<ComandoAlqu
     }
 
     @Override
-    public void ejecutar(ComandoAlquiler comandoAlquiler) {
+    public ComandoRespuesta<String> ejecutar(ComandoAlquiler comandoAlquiler) {
         Alquiler alquiler = this.fabricaAlquiler.crear(comandoAlquiler);
-        this.servicioActualizarAlquiler.ejecutar(alquiler);
+        return new ComandoRespuesta<>(this.servicioActualizarAlquiler.ejecutar(alquiler));
     }
 }
