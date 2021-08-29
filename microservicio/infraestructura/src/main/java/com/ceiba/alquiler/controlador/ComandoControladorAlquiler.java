@@ -45,7 +45,6 @@ public class ComandoControladorAlquiler {
     @PutMapping(value="/{id}")
     @ApiOperation("Actualizar registro")
     public ComandoRespuesta<String>  actualizar(@RequestBody ComandoAlquiler comandoAlquiler, @PathVariable Long id){
-        //comandoAlquiler.setId(id);
         return manejadorActualizarAlquiler.ejecutar(comandoAlquiler);
     }
 }
