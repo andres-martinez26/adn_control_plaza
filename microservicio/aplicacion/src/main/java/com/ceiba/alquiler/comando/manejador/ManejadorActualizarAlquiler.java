@@ -5,7 +5,6 @@ import com.ceiba.alquiler.comando.ComandoAlquiler;
 import com.ceiba.alquiler.comando.fabrica.FabricaAlquiler;
 import com.ceiba.alquiler.modelo.entidad.Alquiler;
 import com.ceiba.alquiler.servicio.ServicioActualizarAlquiler;
-import com.ceiba.manejador.ManejadorComando;
 import com.ceiba.manejador.ManejadorComandoRespuesta;
 import org.springframework.stereotype.Component;
 
