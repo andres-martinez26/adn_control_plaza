@@ -9,6 +9,6 @@ public class CalculadorFecha {
 
     public static String sumarUnMesFechaActual(LocalDateTime localDateTime, int lenghtMonth){
         LocalDateTime plusMonths = localDateTime.plusMonths(lenghtMonth);
-        return  plusMonths.toString();
+        return  plusMonths.toLocalDate().toString();
     }
 }
