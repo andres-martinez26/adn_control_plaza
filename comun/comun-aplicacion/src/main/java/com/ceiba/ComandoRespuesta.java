@@ -2,13 +2,13 @@ package com.ceiba;
 
 public class ComandoRespuesta<T> {
 
-    private T valor;
+    private T mensaje;
 
-    public ComandoRespuesta(T valor) {
-        this.valor = valor;
+    public ComandoRespuesta(T mensaje) {
+        this.mensaje = mensaje;
     }
 
-    public T getValor() {
-        return valor;
+    public T getMensaje() {
+        return mensaje;
     }
 }

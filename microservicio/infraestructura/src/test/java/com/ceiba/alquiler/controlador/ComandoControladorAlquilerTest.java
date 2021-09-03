@@ -38,7 +38,7 @@ public class ComandoControladorAlquilerTest {
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(alquiler)))
                 .andExpect(status().isOk())
-                .andExpect(content().json("{'valor': '2021-09-14T17:10:20'}"));
+                .andExpect(content().json("{'mensaje' : '2021-09-14'}"));
     }
 
 
